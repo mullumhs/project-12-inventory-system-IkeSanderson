@@ -82,6 +82,9 @@ class Item:
             raise ValueError("Quantity Cannot Be Negative")
         self._quantity = new_quantity
 
+    def __str__(self):
+        return f"{self.get_name()}: {self.get_price()}, x {self.get_quantity()}"
+        
 
 
 
@@ -90,19 +93,19 @@ class Item:
 # For example, create a new Item and attempt to set its attributes with both valid and invalid values.
 # Print the outputs using the getters to show how the data is managed internally.
         
-item1 = Item("Box", 2, 100 )
+#item1 = Item("Box", 2, 100 )
 
-print(item1.get_name())
-print(item1.get_price())
-print(item1.get_quantity())
+#print(item1.get_name())
+#print(item1.get_price())
+#print(item1.get_quantity())
 
-item1.set_name("Crate")
-item1.set_price(5)
-item1.set_quantity(3)
+#item1.set_name("Crate")
+#item1.set_price(5)
+#item1.set_quantity(3)
 
-print(item1.get_name())
-print(item1.get_price())
-print(item1.get_quantity())
+#print(item1.get_name())
+#print(item1.get_price())
+#print(item1.get_quantity())
 
 
 
