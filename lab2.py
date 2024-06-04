@@ -30,7 +30,9 @@ class InventoryManager:
         print("Item removed")
     
     def update_item_price(self, item, new_price):
-        item.set_price(new_price)
+        for items in self.items:
+            if items.get_name() == item:
+                items.set_price(new_price)
     
     def update_item_quantity(self, item, new_quantity):
         item.set_quantity(new_quantity)
@@ -47,12 +49,12 @@ class InventoryManager:
 
 # Step 2: Create instances of the Item class and InventoryManager, then demonstrate their usage.
 # E.g. add items to the inventory, remove items, update items, and display the inventory.
-manager = InventoryManager()
-item1 = Item("Box", 2, 69)
-item2 = Item("Blox", 3, 96)
-manager.add_item(item1)
-manager.add_item(item2)
-manager.display_items()
-manager.update_item_price(item2, 99)
-manager.update_item_quantity(item1, 2)
-manager.display_items()
+#manager = InventoryManager()
+#item1 = Item("Box", 2, 69)
+#item2 = Item("Blox", 3, 96)
+#manager.add_item(item1)
+#manager.add_item(item2)
+#manager.display_items()
+#manager.update_item_price(item2, 99)
+#manager.update_item_quantity(item1, 2)
+#manager.display_items()
