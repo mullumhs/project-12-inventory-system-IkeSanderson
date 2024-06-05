@@ -20,12 +20,14 @@ def add_item_ui(manager):
     price = get_int("Enter the Item Price:")
     quantity = get_int("Enter the Item Quantity:")
     manager.add_item(Item(name, price, quantity))
+    print()
+    print(f"{name} Added to Inventory")
 
 
 # Step 3: Define an update_item function that prompts the user for item details and updates the item in the inventory
 def update_item_ui(manager):
     name = input("Enter the Item you Wish to Update:")
-    choice = get_int("Enter - 1 to Update Price - 2 to Update Quantity:")
+    choice = get_int("Enter - 1 to Update Price - 2 to Update Quantity:")  
     if choice == 1:
         new_price = get_int(f"Enter the New price for {name}:") 
         if manager.update_item_price(name, new_price):
@@ -50,33 +52,56 @@ def remove_item_ui(manager):
 
 # Step 5: Define a display_inventory function that displays all items in the inventory
 def display_inventory_ui(manager):
+    print()
     manager.display_items()
 
 def main():
     # Step 6: Initialise an instance of InventoryManager
-    manager = InventoryManager()
 
+    storage = InventoryManager()
+    cold_storage = InventoryManager()
+    deep_storage = InventoryManager()
+    managers = {'1':storage, '2': cold_storage , '3': deep_storage}
+    manager_names = {'1':"Storage", '2': "Cold Storage" , '3': "Deep Storage"}
     # Step 7: Use the actions dictionary to map user input to the corresponding functions
     actions = {'1': add_item_ui, '2': update_item_ui, '3': remove_item_ui, '4': display_inventory_ui}
-    
     while True:
         print("\nInventory Management System")
-        print("1. Add Item")
-        print("2. Update Item")
-        print("3. Remove Item")
-        print("4. Display Inventory")
-        print("5. Exit")
+        print("1. Storage")
+        print("2. Cold Storage")
+        print("3. Deep Storage")
+        print("4. Exit")
 
-        choice = input("Enter choice: ")
-
-        # Step 8: Implement the logic to call the appropriate function based on user input
-        # Exit the loop if the user chooses 5, otherwise display an error message for invalid choices
-        if choice == 5:
-            pass
-        elif choice in actions:
-            actions[choice](manager)
+        inv_choice = input("Enter choice: ")
+        
+        if inv_choice == '4':
+            print("Exiting Program...")
+            break
+        elif inv_choice in actions:
+            manager = managers[inv_choice]
         else: 
             print("Invalid Choice")
+
+        while True:
+            print(f"\n{manager_names[inv_choice]} Management System")
+            print("1. Add Item")
+            print("2. Update Item")
+            print("3. Remove Item")
+            print("4. Display Inventory")
+            print("5. Exit")
+
+            act_choice = input("Enter choice: ")
+            print()
+
+            # Step 8: Implement the logic to call the appropriate function based on user input
+            # Exit the loop if the user chooses 5, otherwise display an error message for invalid choices
+            if act_choice == '5':
+                print("Exiting To Inventories")
+                break
+            elif act_choice in actions:
+                actions[act_choice](manager)
+            else: 
+                print("Invalid Choice")
 
         
 

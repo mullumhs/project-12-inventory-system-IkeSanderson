@@ -23,19 +23,26 @@ class InventoryManager:
 
     def add_item(self, item):
         self.items.append(item)
-        print("Item Added")
+        
 
     def remove_item(self, item):
-        self.items.remove(item)
-        print("Item removed")
+        
+        for items in self.items:
+            if items.get_name() == item:
+                self.items.remove(items)
+                return True
     
     def update_item_price(self, item, new_price):
         for items in self.items:
             if items.get_name() == item:
                 items.set_price(new_price)
+                return True
     
     def update_item_quantity(self, item, new_quantity):
-        item.set_quantity(new_quantity)
+        for items in self.items:
+            if items.get_name() == item:
+                items.set_quantity(new_quantity)
+                return True
 
     def display_items(self):
         for item in self.items:
