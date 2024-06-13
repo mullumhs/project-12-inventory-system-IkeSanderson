@@ -12,7 +12,7 @@
 # Step 1: Import necessary classes (Item class from lab1, InventoryManager class from lab2)
 from lab1 import Item
 from lab2 import InventoryManager
-from utility import get_int
+from utility import get_int, get_password
 import os
 import time
 # Step 2: Define an add_item function that prompts the user for item details and adds the item to the inventory
@@ -66,10 +66,10 @@ def main():
     manager_names = {'1':"Storage", '2': "Cold Storage" , '3': "Deep Storage"}
     # Step 7: Use the actions dictionary to map user input to the corresponding functions
     actions = {'1': add_item_ui, '2': update_item_ui, '3': remove_item_ui, '4': display_inventory_ui}
-    password = '1234'
-    password_enter = input("Enter the Manager Password:")
+   
+    password = get_password("Please Enter The Password:")
     os.system('cls')
-    if password_enter == password:
+    if password:
         while True:
             
             print("\nInventory Management System")
